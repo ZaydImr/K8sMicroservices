@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "All",
+    "Projects": [
+      {
+        "Name": "ApiGateway\\Gateway.WebApi\\Gateway.WebApi.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      },
+      {
+        "Name": "MicroServices\\AuthService\\Auth.API\\Auth.API.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      }
+    ]
+  }
+]
