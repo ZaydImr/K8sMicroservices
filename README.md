@@ -20,3 +20,7 @@ To get started with the project, follow these steps:
 1. **Clone the Repository**: Clone this repository to your local machine.
    ```bash
    git clone https://github.com/ZaydImr/StaffingHub.git
+
+## License
+
+This project is licensed under a restricted License. See the [LICENSE](LICENSE) file for details.
