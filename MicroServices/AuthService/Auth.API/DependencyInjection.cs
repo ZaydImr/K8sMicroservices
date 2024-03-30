@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Auth.Domain.Models;
+using Auth.Infrastructure.Data;
 
 namespace Auth.Application;
 
@@ -9,8 +10,18 @@ public static class DependencyInjection
     {
         services.AddControllers();
         services.AddAuthorization();
-        //services.AddIdentityApiEndpoints<IdentityUser>()
+        services
+            .AddIdentityApiEndpoints<AppUser>(opt =>
+            {
+                opt.Password.RequiredLength = 8;
+                opt.User.RequireUniqueEmail = true;
+                opt.SignIn.RequireConfirmedEmail = false;
+                opt.Password.RequireNonAlphanumeric = true;
+            })
+            .AddEntityFrameworkStores<AuthDataContext>();
 
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen();
 
         return services;
     }
