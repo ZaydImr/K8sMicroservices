@@ -15,4 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build --file MicroServices/AuthService/Auth.API/Dockerfile --tag test ../..
+      run: |
+        cd MicroServices/AuthService/Auth.API
+        docker build --file Dockerfile --tag test ../..
