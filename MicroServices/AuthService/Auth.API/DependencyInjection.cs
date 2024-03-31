@@ -1,12 +1,8 @@
 ﻿using Auth.API.Exceptions;
 using Auth.Domain.Models;
 using Auth.Infrastructure.Data;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using JwtConfiguration;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Filters;
-using System.Text;
 
 namespace Auth.Application;
 
@@ -30,35 +26,8 @@ public static class DependencyInjection
             .AddRoles<IdentityRole>();
 
         services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen(options =>
-        {
-            options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
-            {
-                In = ParameterLocation.Header,
-                Name = "Authorization",
-                Type = SecuritySchemeType.ApiKey
-            });
 
-            options.OperationFilter<SecurityRequirementsOperationFilter>();
-        });
-
-        services.AddAuthentication(options =>
-        {
-            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        }).AddJwtBearer(options =>
-        {
-            options.TokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateIssuerSigningKey = true,
-                ValidateLifetime = true,
-                ValidIssuer = configuration["Jwt:Issuer"],
-                ValidAudience = configuration["Jwt:Audience"],
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]!))
-            };
-        });
+        services.AddJwtValidation(configuration);
 
         services
             .AddProblemDetails()
