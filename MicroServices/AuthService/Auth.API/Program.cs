@@ -1,11 +1,10 @@
 using Auth.Application;
-using Auth.Domain.Models;
 using Auth.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services
-        .AddPresentation()
+        .AddPresentation(builder.Configuration)
         .AddApplication()
         .AddInfrastructure()
         .AddPersistance(builder.Configuration);
@@ -13,6 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 {
+    app.UseExceptionHandler();
+
     if (app.Environment.IsDevelopment())
     {
         app.UseSwagger();
@@ -20,10 +21,10 @@ var app = builder.Build();
     }
 
     app.UseHttpsRedirection();
+    app.UseAuthentication();
     app.UseAuthorization();
 
-    app.MapControllers().RequireAuthorization();
-    app.MapGroup("api").MapIdentityApi<AppUser>().AllowAnonymous();
+    app.MapControllers();
 
     app.Run();
 }
