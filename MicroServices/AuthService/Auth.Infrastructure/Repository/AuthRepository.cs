@@ -14,7 +14,7 @@ public class AuthRepository(AuthDataContext _db, UserManager<AppUser> _userManag
         if (userDto is null)
             throw new GlobalException("Model is empty");
 
-        AppUser newUser = new AppUser()
+        AppUser newUser = new()
         {
             UserName = userDto.UserName,
             Email = userDto.Email,
@@ -45,9 +45,7 @@ public class AuthRepository(AuthDataContext _db, UserManager<AppUser> _userManag
         if (loginDto is null)
             throw new GlobalException("Login container is empty");
 
-        var user = await _userManager.FindByEmailAsync(loginDto.Email);
-        if (user is null)
-            throw new ItemNotFoundException("User not found");
+        var user = await _userManager.FindByEmailAsync(loginDto.Email) ?? throw new ItemNotFoundException("User not found");
 
         bool isValidPassword = await _userManager.CheckPasswordAsync(user, loginDto.Password);
         if (!isValidPassword)
