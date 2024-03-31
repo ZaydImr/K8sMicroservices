@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  build:
+  Docker-Build-Push:
 
     runs-on: ubuntu-latest
 
@@ -19,8 +19,9 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         
-    - name: Build the Docker image
+    - name: Build AuthService image
       run: docker build --file MicroServices/AuthService/Auth.API/Dockerfile --tag zaydimr/staffing-auth-service MicroServices
       
-    - name : Push to Docker Hub
-      run: docker push zaydimr/staffing-auth-service
+    - name : Push images to Docker Hub
+      run: |
+        docker push zaydimr/staffing-auth-service
