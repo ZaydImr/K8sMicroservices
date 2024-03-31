@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Auth.Domain.DTOs;
+namespace Auth.Domain.Contracts.Login;
 
-public class LoginDto
+public class LoginRequest
 {
     [Required]
     [EmailAddress]

@@ -1,4 +1,5 @@
 ﻿using Auth.Application.IRepositories;
+using Auth.Domain.Contracts.Login;
 using Auth.Domain.DTOs;
 using Auth.Domain.Exceptions;
 using Auth.Domain.Models;
@@ -9,25 +10,25 @@ namespace Auth.Infrastructure.Repository;
 
 public class AuthRepository(AuthDataContext _db, UserManager<AppUser> _userManager, RoleManager<IdentityRole> _roleManager) : IAuthRepository
 {
-    public async Task<string> CreateAccount(UserDto userDto)
+    public async Task<string> CreateAccount(RegisterDto registerDto)
     {
-        if (userDto is null)
+        if (registerDto is null)
             throw new GlobalException("Model is empty");
 
         AppUser newUser = new()
         {
-            UserName = userDto.UserName,
-            Email = userDto.Email,
-            PasswordHash = userDto.Password
+            UserName = registerDto.UserName,
+            Email = registerDto.Email,
+            PasswordHash = registerDto.Password
         };
 
-        var createdUser = await _userManager.CreateAsync(newUser, userDto.Password);
+        var createdUser = await _userManager.CreateAsync(newUser, registerDto.Password);
         if (!createdUser.Succeeded)
         {
             throw new GlobalException(createdUser.Errors.First().Description);
         }
 
-        foreach (string role in userDto.Roles)
+        foreach (string role in registerDto.Roles)
         {
             var checkRole = await _roleManager.FindByNameAsync(role.ToUpper());
             if (checkRole is null)
@@ -40,7 +41,7 @@ public class AuthRepository(AuthDataContext _db, UserManager<AppUser> _userManag
         return "Account created";
     }
 
-    public async Task<AppUser> LoginAccount(LoginDto loginDto)
+    public async Task<AppUser> LoginAccount(LoginRequest loginDto)
     {
         if (loginDto is null)
             throw new GlobalException("Login container is empty");
