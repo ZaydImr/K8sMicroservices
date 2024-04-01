@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-service-deployment
+  labels:
+    app: weather-microservice
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: weather-microservice
+  template:
+    metadata:
+      labels:
+        app: weather-microservice
+    spec:
+      containers:
+        - name: weather-microservice
+          image: zaydimr/staffing-weather-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: weather-port
+          resources:
+            limits:
+              memory: "4Gi"
+              cpu: "500m"

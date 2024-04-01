@@ -10,9 +10,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MicroServices", "MicroServices", "{18C82475-C740-456C-BA27-962E6B7E6C6E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthService", "AuthService", "{40CE846E-398E-4298-8328-90772E6C0839}"
-	ProjectSection(SolutionItems) = preProject
-		Dockerfile.txt = Dockerfile.txt
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.API", "MicroServices\AuthService\Auth.API\Auth.API.csproj", "{687B7F48-F86F-4D11-B5FD-176FDDCAC236}"
 EndProject
@@ -26,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Tests", "MicroServices
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K8S", "K8S", "{6E54025E-947D-4484-BE8B-D4F6C53D5C37}"
 	ProjectSection(SolutionItems) = preProject
-		K8S\weather-deploy.yaml = K8S\weather-deploy.yaml
+		K8S\ingress-microservices.yaml = K8S\ingress-microservices.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "Éléments de solution", "{116E4AA6-7E16-44B7-889E-38BA041AF8DB}"
@@ -37,11 +34,44 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "�
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather", "MicroServices\Weather\Weather.csproj", "{712BB50C-D6AE-467E-809E-BE659CA44DF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weather", "MicroServices\Weather\Weather.csproj", "{712BB50C-D6AE-467E-809E-BE659CA44DF6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{13AAA2A5-D975-4B22-B155-A4E05D516B12}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtConfiguration", "MicroServices\Common\JwtConfiguration\JwtConfiguration.csproj", "{66CD9EBA-4603-463F-B53A-27DFC1D2A117}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ingress-controller", "ingress-controller", "{96951DD7-5D77-4416-AEA3-B906E3CE70D4}"
+	ProjectSection(SolutionItems) = preProject
+		K8S\ingress-controller\config.MD = K8S\ingress-controller\config.MD
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "manifests", "manifests", "{670A0C08-E0E5-4CAD-B902-8089D385DF27}"
+	ProjectSection(SolutionItems) = preProject
+		K8S\ingress-controller\manifests\nginx-ingress.1.10.0.yaml = K8S\ingress-controller\manifests\nginx-ingress.1.10.0.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "microservices", "microservices", "{ABFC637D-F5D8-4CF5-BA16-7FF3415B6919}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "auth-service", "auth-service", "{7C01368E-4198-46F1-AB5C-9B16246C39DF}"
+	ProjectSection(SolutionItems) = preProject
+		K8S\microservices\auth-service\1-deployment.yaml = K8S\microservices\auth-service\1-deployment.yaml
+		K8S\microservices\auth-service\2-service.yaml = K8S\microservices\auth-service\2-service.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "monitoring", "monitoring", "{8ED3DC8C-9DBA-4674-A213-FB5BBF2BF55D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "grafana", "grafana", "{30E361BF-880E-4B27-9DB7-0761F7EC8FDE}"
+	ProjectSection(SolutionItems) = preProject
+		K8S\monitoring\grafana\0-sercret.yaml = K8S\monitoring\grafana\0-sercret.yaml
+		K8S\monitoring\grafana\1-deployment.yaml = K8S\monitoring\grafana\1-deployment.yaml
+		K8S\monitoring\grafana\2-service.yaml = K8S\monitoring\grafana\2-service.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "weather-service", "weather-service", "{BBB752BA-34B8-47A1-809E-E711473A30E1}"
+	ProjectSection(SolutionItems) = preProject
+		K8S\microservices\weather-service\1-deployment.yaml = K8S\microservices\weather-service\1-deployment.yaml
+		K8S\microservices\weather-service\2-service.yaml = K8S\microservices\weather-service\2-service.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,6 +126,13 @@ Global
 		{712BB50C-D6AE-467E-809E-BE659CA44DF6} = {18C82475-C740-456C-BA27-962E6B7E6C6E}
 		{13AAA2A5-D975-4B22-B155-A4E05D516B12} = {18C82475-C740-456C-BA27-962E6B7E6C6E}
 		{66CD9EBA-4603-463F-B53A-27DFC1D2A117} = {13AAA2A5-D975-4B22-B155-A4E05D516B12}
+		{96951DD7-5D77-4416-AEA3-B906E3CE70D4} = {6E54025E-947D-4484-BE8B-D4F6C53D5C37}
+		{670A0C08-E0E5-4CAD-B902-8089D385DF27} = {96951DD7-5D77-4416-AEA3-B906E3CE70D4}
+		{ABFC637D-F5D8-4CF5-BA16-7FF3415B6919} = {6E54025E-947D-4484-BE8B-D4F6C53D5C37}
+		{7C01368E-4198-46F1-AB5C-9B16246C39DF} = {ABFC637D-F5D8-4CF5-BA16-7FF3415B6919}
+		{8ED3DC8C-9DBA-4674-A213-FB5BBF2BF55D} = {6E54025E-947D-4484-BE8B-D4F6C53D5C37}
+		{30E361BF-880E-4B27-9DB7-0761F7EC8FDE} = {8ED3DC8C-9DBA-4674-A213-FB5BBF2BF55D}
+		{BBB752BA-34B8-47A1-809E-E711473A30E1} = {ABFC637D-F5D8-4CF5-BA16-7FF3415B6919}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {81A07BE2-E1FF-4A2E-A5ED-85AC0CF7152A}
