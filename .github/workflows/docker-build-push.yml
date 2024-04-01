@@ -22,9 +22,10 @@ jobs:
     - name: Build AuthService image
       run: docker build --file MicroServices/AuthService/Auth.API/Dockerfile --tag zaydimr/staffing-auth-service MicroServices
 
-    - name: Build Weather image
+    - name: Build WeatherService image
       run: docker build --file MicroServices/Weather/Dockerfile --tag zaydimr/staffing-weather-service MicroServices
       
     - name : Push images to Docker Hub
       run: |
         docker push zaydimr/staffing-auth-service
+        docker push zaydimr/staffing-weather-service
