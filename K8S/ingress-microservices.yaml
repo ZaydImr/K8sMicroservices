@@ -20,6 +20,13 @@ spec:
               port: 
                 number: 8080
         - pathType: Prefix
+          path: /weather(/|$)(.*)
+          backend:
+            service:
+              name: weather-service
+              port: 
+                number: 8080
+        - pathType: Prefix
           path: /grafana(/|$)(.*)
           backend:
             service:
