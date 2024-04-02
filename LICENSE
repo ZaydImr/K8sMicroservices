@@ -1,24 +1,21 @@
-Proprietary Software License
+MIT License
 
-1. Ownership: The software, including all its components, remains the exclusive property of Zayd EL IMRANI ("Owner").
+Copyright (c) 2024 Zayd EL IMRANI
 
-2. License Grant: Owner grants you a non-exclusive, non-transferable license to use the software solely for your internal business purposes.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-3. Restrictions: You may not:
-   a. Modify, adapt, or create derivative works of the software.
-   b. Distribute, sublicense, or make the software available to third parties.
-   c. Reverse engineer, decompile, or disassemble the software.
-   d. Remove or alter any copyright, trademark, or other proprietary notices.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-4. No Warranty: The software is provided "as is," without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and non-infringement. Owner disclaims any and all warranties.
-
-5. Limitation of Liability: In no event shall Owner be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) arising in any way out of the use of the software, even if advised of the possibility of such damage.
-
-6. Governing Law: This license shall be governed by and construed in accordance, excluding its conflict of law principles.
-
-7. Termination: This license is effective until terminated. Owner may terminate this license at any time if you fail to comply with its terms. Upon termination, you must cease all use of the software and destroy all copies of the software in your possession or control.
-
-8. Entire Agreement: This license constitutes the entire agreement between you and Owner regarding the subject matter herein and supersedes all prior or contemporaneous agreements, representations, warranties, and understandings, whether written or oral.
-
-Zayd EL IMRANI
-elimrani.z@gmail.com
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
