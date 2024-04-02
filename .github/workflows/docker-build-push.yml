@@ -35,12 +35,11 @@ jobs:
     steps:       
       - name: Checkout
         uses: actions/checkout@v4.1.1
-
-      - name: List directory
-        run: dir
         
-      - name: Build AuthService image
-        run: kubectl apply -R -f .\K8S\microservices\
+      - name: Re-deploy microservices
+        run:  |
+          kubectl delete -R -f .\K8S\microservices\
+          kubectl apply -R -f .\K8S\microservices\
   
       - name: Build WeatherService image
         run: kubectl apply -R -f .\K8S\ingress-microservices.yaml
