@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: grow-app
+  namespace: default
+spec:
+  dnsNames:
+    - grow-as-team.com
+  secretName: grow-app-tls
+  issuerRef:
+    name: grow-cluster-issuer
+    kind: ClusterIssuer

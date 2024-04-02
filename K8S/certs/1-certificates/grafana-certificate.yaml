@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: grafana-app
+  namespace: default
+spec:
+  dnsNames:
+    - grafana.grow-as-team.com
+  secretName: grafana-app-tls
+  issuerRef:
+    name: grafana-cluster-issuer
+    kind: ClusterIssuer

@@ -1,0 +1,27 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/ssl-cert: "grafana-app-tls"
+  labels:
+    name: grafana-ingress
+spec:
+  ingressClassName: nginx
+  tls: 
+    - hosts: 
+      - grafana.grow-as-team.com
+      secretName: grafana-app-tls
+  rules:
+    - host: grafana.grow-as-team.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /(/|$)(.*)
+            backend:
+              service:
+                name: grafana
+                port: 
+                  number: 8080

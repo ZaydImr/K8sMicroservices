@@ -1,0 +1,27 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: weather-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-cert: "weather-app-tls"
+  labels:
+    name: weather-ingress
+spec:
+  ingressClassName: nginx
+  tls: 
+    - hosts: 
+      - weather.grow-as-team.com
+      secretName: weather-app-tls
+  rules:
+    - host: weather.grow-as-team.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: weather-service
+                port: 
+                  number: 8080

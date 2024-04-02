@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: weather-app
+  namespace: default
+spec:
+  dnsNames:
+    - weather.grow-as-team.com
+  secretName: weather-app-tls
+  issuerRef:
+    name: weather-cluster-issuer
+    kind: ClusterIssuer
