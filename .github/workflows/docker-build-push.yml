@@ -40,7 +40,7 @@ jobs:
         run: dir
         
       - name: Build AuthService image
-        run: kubectl apply -R -f .\microservices\
+        run: kubectl apply -R -f .\K8S\microservices\
   
       - name: Build WeatherService image
-        run: kubectl apply -R -f .\ingress-microservices.yaml
+        run: kubectl apply -R -f .\K8S\ingress-microservices.yaml
