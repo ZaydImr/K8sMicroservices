@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: auth-microservice
-          image: zaydimr/staffing-auth-service:latest
+          image: zaydimr/k8s-exemple-auth-service:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

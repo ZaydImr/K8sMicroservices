@@ -1,26 +1,80 @@
-# Staffing Management System
+# Microservices Architecture Documentation
 
-Welcome to the Staffing Management System project! This project is aimed at providing a comprehensive solution for managing employees and candidates within your organization, leveraging modern technologies and best practices.
+## Overview
 
-## Features
+This documentation provides an overview of the microservices architecture implemented using .NET Core 8.0.3 and Kubernetes. The architecture consists of two microservices: `auth-service` and `weather-service`. 
 
-## Technologies
+## Microservices
 
-- **Angular Frontend**: Provides a user-friendly interface for interacting with the system, built using Angular framework.
-- **.NET Core Backend**: Utilizes .NET Core 8 for the backend services, ensuring high performance and compatibility.
-- **Microservices Architecture**: Built using a microservices architecture to ensure scalability, maintainability, and flexibility.
-- **Clean Architecture with DDD**: Follows Clean Architecture principles with a focus on Domain-Driven Design (DDD) to ensure separation of concerns and maintainability.
-- **Test-Driven Development (TDD)**: Developed using Test-Driven Development (TDD) approach to ensure robustness and reliability.
-- **Oracle Database**: Uses Oracle database for data storage, providing reliability and scalability.
+### Auth-Service
 
-## Getting Started
+- **Description**: Implements Domain-Driven Design (DDD) and Clean Architecture principles.
+- **Technology Stack**:
+  - Language: C# with .NET Core 8.0.3
+  - Database: OracleDB
+  - Authentication: Microsoft Identity with JWT
+- **Endpoints**:
+  - `/register`: Register a new user
+  - `/login`: Authenticate user and generate JWT token
+  - `/refreshToken`: Refresh JWT token
 
-To get started with the project, follow these steps:
+### Weather-Service
 
-1. **Clone the Repository**: Clone this repository to your local machine.
-   ```bash
-   git clone https://github.com/ZaydImr/StaffingHub.git
+- **Description**: Implements basic weather functionality.
+- **Technology Stack**:
+  - Language: C# with .NET Core 8.0.3
+  - Authentication: JWT
+- **Endpoints**:
+  - `/WeatherForecast`: Get list of weathers
 
-## License
+## Kubernetes Configuration
 
-This project is licensed under a restricted License. See the [LICENSE](LICENSE) file for details.
+### Auth-Service
+
+- **Deployment**: Deployed as a Kubernetes Deployment.
+- **Service**: Exposed via a Kubernetes Service for internal communication.
+- **Ingress**: Configured to route external traffic to the service.
+- **Certificates**: Utilizes cert-manager for SSL certificates.
+
+### Weather-Service
+
+- **Deployment**: Deployed as a Kubernetes Deployment.
+- **Service**: Exposed via a Kubernetes Service for internal communication.
+- **Ingress**: Configured to route external traffic to the service.
+- **Certificates**: Utilizes cert-manager for SSL certificates.
+
+## GitHub Actions Workflows
+
+### Development Workflow
+
+- **Description**: This workflow runs on the `main` branch and is triggered on every pull request.
+- **Actions**:
+  - Builds the application to check for errors.
+  - Runs tests to ensure code integrity.
+
+### Production deployment Workflow
+
+- **Description**: This workflow is responsible for deploying the microservices to Kubernetes.
+- **Actions**:
+  - Builds Docker images for each microservice.
+  - Pushes Docker images to a container registry.
+  - Applies Kubernetes manifests for each microservice (`auth-service` and `weather-service`).
+  - Verifies deployment and service availability.
+
+## Dependencies
+
+- **Oracle**: Used by `auth-service` for data storage.
+- **Microsoft Identity**: Used for authentication in `auth-service`.
+- **JWT**: Utilized for token-based authentication in both microservices.
+- **Kubernetes**: Orchestration platform for deploying and managing microservices.
+
+## Future Improvements
+
+- Implement logging and monitoring for better observability.
+- Enhance security measures such as RBAC for Kubernetes resources.
+- Scale microservices horizontally based on load.
+
+## Conclusion
+
+This documentation outlines the architecture, technology stack, Kubernetes configuration, deployment process, dependencies, and future improvements for the microservices implemented using .NET Core 8.0.3 and Kubernetes.
+

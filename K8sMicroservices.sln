@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Tests", "MicroServices
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K8S", "K8S", "{6E54025E-947D-4484-BE8B-D4F6C53D5C37}"
 	ProjectSection(SolutionItems) = preProject
-		K8S\ingress-microservices.yaml = K8S\ingress-microservices.yaml
+		K8S\global-ingress.yaml = K8S\global-ingress.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "Éléments de solution", "{116E4AA6-7E16-44B7-889E-38BA041AF8DB}"
@@ -52,6 +52,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "auth-service", "auth-servic
 	ProjectSection(SolutionItems) = preProject
 		K8S\microservices\auth-service\1-deployment.yaml = K8S\microservices\auth-service\1-deployment.yaml
 		K8S\microservices\auth-service\2-service.yaml = K8S\microservices\auth-service\2-service.yaml
+		K8S\microservices\auth-service\3-ingress.yaml = K8S\microservices\auth-service\3-ingress.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "monitoring", "monitoring", "{8ED3DC8C-9DBA-4674-A213-FB5BBF2BF55D}"
@@ -61,12 +62,37 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "grafana", "grafana", "{30E3
 		K8S\monitoring\grafana\0-sercret.yaml = K8S\monitoring\grafana\0-sercret.yaml
 		K8S\monitoring\grafana\1-deployment.yaml = K8S\monitoring\grafana\1-deployment.yaml
 		K8S\monitoring\grafana\2-service.yaml = K8S\monitoring\grafana\2-service.yaml
+		K8S\monitoring\grafana\3-ingress.yaml = K8S\monitoring\grafana\3-ingress.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "weather-service", "weather-service", "{BBB752BA-34B8-47A1-809E-E711473A30E1}"
 	ProjectSection(SolutionItems) = preProject
 		K8S\microservices\weather-service\1-deployment.yaml = K8S\microservices\weather-service\1-deployment.yaml
 		K8S\microservices\weather-service\2-service.yaml = K8S\microservices\weather-service\2-service.yaml
+		K8S\microservices\weather-service\3-ingress.yaml = K8S\microservices\weather-service\3-ingress.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cert-manager", "cert-manager", "{C30AA1D8-D2B7-46BA-BCDE-9E3F20D16532}"
+	ProjectSection(SolutionItems) = preProject
+		K8S\cert-manager\cert-manager-1.14.4.yaml = K8S\cert-manager\cert-manager-1.14.4.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "certs", "certs", "{4291FDD5-9CA0-4CBF-8383-01AA2A99BF1B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-issuers", "0-issuers", "{4B7CA710-E5D8-4F52-8937-8DAEA9C0C1CD}"
+	ProjectSection(SolutionItems) = preProject
+		K8S\certs\0-issuers\auth-issuer.yaml = K8S\certs\0-issuers\auth-issuer.yaml
+		K8S\certs\0-issuers\grafana-issuer.yaml = K8S\certs\0-issuers\grafana-issuer.yaml
+		K8S\certs\0-issuers\grow-issuer.yaml = K8S\certs\0-issuers\grow-issuer.yaml
+		K8S\certs\0-issuers\weather-issuer.yaml = K8S\certs\0-issuers\weather-issuer.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-certificates", "1-certificates", "{4B16D218-3F45-46DF-857C-187EB54546AA}"
+	ProjectSection(SolutionItems) = preProject
+		K8S\certs\1-certificates\auth-certificate.yaml = K8S\certs\1-certificates\auth-certificate.yaml
+		K8S\certs\1-certificates\grafana-certificate.yaml = K8S\certs\1-certificates\grafana-certificate.yaml
+		K8S\certs\1-certificates\grow-certificate.yaml = K8S\certs\1-certificates\grow-certificate.yaml
+		K8S\certs\1-certificates\weather-certificate.yaml = K8S\certs\1-certificates\weather-certificate.yaml
 	EndProjectSection
 EndProject
 Global
@@ -124,6 +150,10 @@ Global
 		{8ED3DC8C-9DBA-4674-A213-FB5BBF2BF55D} = {6E54025E-947D-4484-BE8B-D4F6C53D5C37}
 		{30E361BF-880E-4B27-9DB7-0761F7EC8FDE} = {8ED3DC8C-9DBA-4674-A213-FB5BBF2BF55D}
 		{BBB752BA-34B8-47A1-809E-E711473A30E1} = {ABFC637D-F5D8-4CF5-BA16-7FF3415B6919}
+		{C30AA1D8-D2B7-46BA-BCDE-9E3F20D16532} = {6E54025E-947D-4484-BE8B-D4F6C53D5C37}
+		{4291FDD5-9CA0-4CBF-8383-01AA2A99BF1B} = {6E54025E-947D-4484-BE8B-D4F6C53D5C37}
+		{4B7CA710-E5D8-4F52-8937-8DAEA9C0C1CD} = {4291FDD5-9CA0-4CBF-8383-01AA2A99BF1B}
+		{4B16D218-3F45-46DF-857C-187EB54546AA} = {4291FDD5-9CA0-4CBF-8383-01AA2A99BF1B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {81A07BE2-E1FF-4A2E-A5ED-85AC0CF7152A}

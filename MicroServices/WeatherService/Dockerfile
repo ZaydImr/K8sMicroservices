@@ -7,12 +7,12 @@ EXPOSE 5552
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Weather/Weather.csproj", "Weather/"]
+COPY ["WeatherService/Weather.csproj", "WeatherService/"]
 COPY ["Common/JwtConfiguration/JwtConfiguration.csproj", "Common/JwtConfiguration/"]
-RUN dotnet restore "./Weather/Weather.csproj"
+RUN dotnet restore "./WeatherService/Weather.csproj"
 
 COPY . .
-WORKDIR "/src/Weather"
+WORKDIR "/src/WeatherService"
 RUN dotnet build -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

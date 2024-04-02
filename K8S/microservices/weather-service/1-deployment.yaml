@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: weather-microservice
-          image: zaydimr/staffing-weather-service:latest
+          image: zaydimr/k8s-exemple-weather-service:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
